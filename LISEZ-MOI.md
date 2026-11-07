@@ -1,5 +1,19 @@
 # Garage Alpha – Vercel + MongoDB Atlas
 
+## 0. Structure obligatoire (cause n°1 de l'erreur 404)
+Ces éléments doivent se trouver **directement à la racine du projet déployé** (pas dans un sous-dossier) :
+```
+api/            (health.js, login.js, [col].js, ...)
+index.html
+package.json
+vercel.json
+```
+- GitHub : envoyez le **contenu** du dossier (api, index.html, package.json, vercel.json), pas le dossier parent. Sur la page du dépôt, `api/` doit être visible tout de suite.
+- Vercel CLI : lancez `vercel` / `vercel --prod` **depuis ce dossier**.
+- Vercel > Settings > General : *Root Directory* vide (ou le dossier qui contient `api/`), *Framework Preset* « Other », *Output Directory* et *Build Command* vides.
+- Test : ouvrez `https://VOTRE-SITE.vercel.app/api/health` → une page JSON `{"api":"en ligne", ...}` doit s'afficher.
+- Ne publiez pas ce fichier ni le dépôt en public avec les valeurs ADMIN_SALT / ADMIN_HASHES ci-dessous : ce sont les empreintes de vos mots de passe.
+
 ## 1. MongoDB Atlas
 Créez un cluster, un utilisateur de base de données, puis dans « Network Access » autorisez 0.0.0.0/0 (les IP de Vercel changent).
 
